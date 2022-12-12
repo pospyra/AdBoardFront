@@ -15,7 +15,9 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "strictPropertyInitialization": false,
     "importHelpers": true,
+    "strictNullChecks" : false,
     "target": "es2020",
     "module": "es2020",
     "lib": [

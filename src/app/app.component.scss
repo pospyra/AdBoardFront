@@ -1,0 +1,29 @@
+.wrap{
+   display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: red;
+
+    app-header{
+        position: sticky;
+        top:0;
+        padding: 40px;
+        border-radius: 0 10px;
+        background-color:lightsteelblue;
+    }
+
+    main{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-height: 220vh;
+        padding: 24px;
+
+    }
+
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+} 

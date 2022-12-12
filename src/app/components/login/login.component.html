@@ -1,0 +1,32 @@
+<h1>Вход</h1>
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="login">Логин</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input name="login"  id="login" formControlName = "login">
+      </nz-form-control>
+    </nz-form-item >
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="password">Пароль</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input name="password"  id="password" formControlName = "password" type="password">
+      </nz-form-control>
+    </nz-form-item >
+
+    <div class="buttonLogin">
+    <button class="login" nz-button nzType ="primary" type ="submit">Вход</button>
+    </div>
+  </form>
+
+  <p>Еще не зарегистрированы?</p>
+  <button nz-button nzType="default" type="button" routerLink="/register">
+    Зарегистрироваться
+  </button>
+
+
+  <ng-template #errorTip let-control>
+    <div style = "color:red" *ngIf="control?.invalid && control?.touched">Поле заполнено не верно</div>
+  </ng-template>
+

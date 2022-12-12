@@ -1,0 +1,25 @@
+.ad{
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);
+    max-width: 300px;
+    min-height: 400px;
+    height:auto !important;
+    height:400px;
+   transition: 0.3s;
+   padding: 12px;
+   display: inline;
+   float:left;
+   display: d-flex ;
+   justify-content :center ;
+   vertical-align:top;
+   margin:0 auto;
+   gap: 24px;
+   position: relative; //перенос слов 
+    // display: flex;
+    /* flex-direction: column;
+    gap:12px;
+    border: solid 1px green;
+   border-radius: 12px;
+   
+    flex: 0 1 calc(25% - 36px);
+ */
+}

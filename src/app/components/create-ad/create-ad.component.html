@@ -1,0 +1,69 @@
+<h1>Объявить объявление</h1>
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="adName">Название</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input name="adName"  id="adName" formControlName = "adName">
+      </nz-form-control>
+    </nz-form-item >
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Категория</nz-form-label>
+        <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+          <nz-tree-select
+            [nzNodes]="(category$ | async) || []"
+            formControlName="categoryId"
+          ></nz-tree-select>
+        </nz-form-control> 
+      </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="description">Описание</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <textarea nz-input  [nzAutosize]="{ minRows: 2, maxRows: 6 }" name="description"  id="description" formControlName = "description"></textarea>
+      </nz-form-control>
+    </nz-form-item >
+
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="region">Регион</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input name="region"  id="region" formControlName = "region">
+      </nz-form-control>
+    </nz-form-item >
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzRequired>Цена</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input formControlName="price" >
+      </nz-form-control>
+    </nz-form-item>
+    
+     <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzRequired>Возомжность доставки</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <input nz-input formControlName="possibleDelivery" type="checkbox" value="true" >
+      </nz-form-control>
+    </nz-form-item> 
+
+<!--     <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzRequired>Фотографии</nz-form-label>
+      <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
+        <nz-upload
+          nzAction="http://localhost:5000/photos/create"
+          (nzChange)="handleChange($event)"
+        >
+          <button nz-button type="button">
+            <span nz-icon nzType="upload"></span>
+            Click to Upload
+          </button>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item> -->
+
+    <button nz-button nzType ="primary" type ="submit">Объявить объявление</button>
+  </form>
+
+  <ng-template #errorTip let-control>
+    <div style = "color:red" *ngIf="control?.invalid && control?.touched">Поле заполнено не верно</div>
+  </ng-template>

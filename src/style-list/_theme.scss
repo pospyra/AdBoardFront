@@ -1,0 +1,15 @@
+input,
+textarea{
+    border: solid 1px ;
+}
+
+.row{
+    display: flex;
+    gap: 12px;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

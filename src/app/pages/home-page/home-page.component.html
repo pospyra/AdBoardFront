@@ -1,0 +1,40 @@
+<h1>HOME Pages</h1>
+  
+<div class = "list" *ngIf = "!isLoading ; else loadingg">
+<!--   <app-ads *ngFor = "let item of ads" [ad] = "item"></app-ads>  -->
+<div class="container" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" >
+
+  <nz-card *ngFor = "let item of ads" >
+    <button nz-button nzType="primary"><span nz-icon [nzType]="'star'" [nzTheme]="'fill'"></span></button>
+    <h1>{{item.adName}}</h1> 
+    <p>Описание: {{item.description}}</p> 
+    <p>Категория {{item.categoryName }}</p>
+    <p>Автор {{item.userName}}</p>
+    <h2>Цена {{item.price |currency}}</h2> 
+
+
+  </nz-card> 
+  </div>
+  </div>
+
+  <ng-template #loadingg>
+    <div class = "spinner">
+      <nz-spin nzTip="Loading"></nz-spin >
+        </div>
+ </ng-template>
+
+ <nz-pagination [nzPageIndex]="pageNumber" [nzTotal]="9" [nzPageSize]="pageSize" (nzPageIndexChange)="onChange($event)"></nz-pagination>
+
+
+
+
+<!-- <div class="container" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" 
+
+">
+  <nz-card *ngFor = "let item of ads" >123 </nz-card>  
+
+
+ <ng-template #loading>
+    <nz-spin></nz-spin >
+ </ng-template>
+ -->

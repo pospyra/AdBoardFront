@@ -1,5 +1,27 @@
 <h1>HOME Pages</h1>
-  
+
+<div class = "search">
+  <div class = "adName">
+    <input nz-input name="adName"  id="adNameSearch" >
+    <button nz-button nzType ="primary" type ="submit" value="search" (click)="onSubmit()">Поиск</button>  
+  </div>
+
+  <div class =" categorySearch">
+    <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Категория</nz-form-label>
+        <nz-form-control [nzSpan]="14" >
+          <nz-tree-select
+            [nzNodes]="(category$ | async) || []"
+            formControlName="categoryId"
+          ></nz-tree-select>
+        </nz-form-control> 
+      </nz-form-item>  
+    </form>
+  </div>
+</div>
+
+
 <div class = "list" *ngIf = "!isLoading ; else loadingg">
 <!--   <app-ads *ngFor = "let item of ads" [ad] = "item"></app-ads>  -->
 <div class="container" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" >
@@ -11,8 +33,6 @@
     <p>Категория {{item.categoryName }}</p>
     <p>Автор {{item.userName}}</p>
     <h2>Цена {{item.price |currency}}</h2> 
-
-
   </nz-card> 
   </div>
   </div>

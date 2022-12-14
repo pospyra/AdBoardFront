@@ -18,11 +18,13 @@ import { UserApiService } from 'src/app/services/user-api.service';
 export class HeaderComponent implements OnInit {
   ads : AdDto[] ;
   user: UserDto[];
-  category : Category[] = [];
+  category: Category[] = [];
 
   public pageSize =8;
   public pageNumber =1;
-  public isLoading  : boolean = true;
+  public isLoading: boolean = true;
+  search: string;
+
 
   constructor(private _categoryApiService : CategoryApiService, private _adApiService : AdApiService, private _userService : UserApiService, private _filter : HomePageComponent) { }
 
@@ -38,7 +40,8 @@ export class HeaderComponent implements OnInit {
 }
 
 onSubmit(){
-this._filter.onSubmit();
+ // this._adApiService.search$.next(this.search)
+//this._filter.onSubmit(this.search);
 }
 // onSubmit() : void{
 //   const adName =(<HTMLInputElement>document.getElementById('adNameSearch')).value;

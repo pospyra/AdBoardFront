@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
   {path: 'createAd', component: CreateAdComponent},
   
+  
 ];
 
 @NgModule({

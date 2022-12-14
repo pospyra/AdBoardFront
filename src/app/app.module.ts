@@ -34,6 +34,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { CreateAdComponent } from './components/create-ad/create-ad.component';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { RouterModule } from '@angular/router';
+import { FilterComponent } from './components/filter/filter.component';
 registerLocaleData(ru)
 
 @NgModule({
@@ -47,6 +48,7 @@ registerLocaleData(ru)
     LoginComponent,
     RegistrationComponent,
     CreateAdComponent,
+    FilterComponent,
   ],
   imports: [
     RouterModule,

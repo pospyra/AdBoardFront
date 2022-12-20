@@ -6,6 +6,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthApiService } from 'src/app/services/auth-api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',

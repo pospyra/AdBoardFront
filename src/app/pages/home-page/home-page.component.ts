@@ -4,7 +4,7 @@ import { Component, HostListener, OnChanges, OnInit, SimpleChanges } from '@angu
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
-import { combineLatest, combineLatestWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, combineLatestWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import {AdDto} from 'src/app/models/ad-dto.interface' ;
 import { CategoryDto } from 'src/app/models/category-dto.interface';
 import { UserDto } from 'src/app/models/user-dto.interface';
@@ -16,23 +16,24 @@ import { UserApiService } from 'src/app/services/user-api.service';
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
- // providers :[FilterComponent]
+ // providers :[FilterComponent
 })
 
 export class HomePageComponent implements OnInit {
-  public category$ =  this._categoryService.getListCategory();
-  
-  readonly form = this.fb.group({ 
-    categoryId: [ Validators.required ]
+
+  readonly formSearch = this.fb.group({ 
+    categoryId: [ ]
   })
 
+  public category$ =  this._categoryService.getListCategory();
    ads : AdDto[] ;
-   //ads : any ;
    user: UserDto[];
+   //category: null;
+   category: string = "";
 
-   public pageSize =6;
+   public pageSize =23;
    public pageNumber =1;
-   public isLoading  : boolean = true;
+   public isLoading  : boolean;
    //public adName : string;
   // public AdName : string = (<HTMLInputElement>document.getElementById('adNameSearch')).value ;
 
@@ -40,32 +41,30 @@ export class HomePageComponent implements OnInit {
     private fb : FormBuilder, 
     private _adApiService: AdApiService, 
     private _categoryService: CategoryApiService,
-     private _userService : UserApiService, 
-     private route : ActivatedRoute) {
-}
+    private _userService : UserApiService, 
+    private route : ActivatedRoute) {}
 
    ngOnInit() : void{
-   this.route.paramMap.subscribe(paramMap => console.log(paramMap.get('AdName')));
+    this.route.paramMap.subscribe(paramMap => console.log(paramMap.get('AdName')));
+    this.route.paramMap.subscribe(paramMap => console.log(paramMap.get('CategoryId')));
+  // this.route.paramMap.subscribe(paramMap => console.log(paramMap.get('AdName')));
     // this.route.params.subscribe(params => {
     //   this.AdName = params['AdName']
     //   console.log("URL id has changed")
-      this.onSubmit();
+    this.onSubmit()
+  }
+
+  deleteAd(id: string): void{
+    this._adApiService.deleteAd(id)
   }
 
  onSubmit(){
-  // search?: string
-  //const adName = search;
- // console.log(search);
   const adName = (<HTMLInputElement>document.getElementById('adNameSearch')).value;
-  //var categoryId = this.form.getRawValue();
-  const categoryId= Guid.parse("a0e2d676-ce6d-4a42-aa59-901e5b4332cb");
-  var possibleDelivery = true;
+  const categoryId = this.formSearch.getRawValue();
+  const possibleDelivery = true;
   var price = 12;
-
- /*  const category$ = this._categoryService.getListCategory(); */
- //const ad$ = this._adApiService.getList();
- const users$  = this._userService.getUserList();
-  const ad$ = this._adApiService.getAdFilter( 1, 3, adName, categoryId, possibleDelivery, price);
+  const users$  = this._userService.getUserList();
+  const ad$ = this._adApiService.getAdFilter( this.pageNumber, this.pageSize, adName,possibleDelivery, this.category);
   combineLatest([/* category$, */ users$, ad$]).subscribe(response=>{
    /*  const category = response[0]; */
     const user = response[0];
@@ -79,35 +78,21 @@ export class HomePageComponent implements OnInit {
     })
   }); 
 }
+
+
    
-  //  ngOnInit(): void {
-
-  //    const users$  = this._userService.getUserList();
-  //   /*  const category$ = this._categoryService.getListCategory(); */
-  //   //const ad$ = this._adApiService.getList();
-  //    const ad$ =    this._adApiService.getAdPage( 1, this.pageSize);
-  //    combineLatest([/* category$, */ users$, ad$]).subscribe(response=>{
-  //     /*  const category = response[0]; */
-  //      const user = response[0];
-  //      const ad = response[1];
-  //      this.isLoading = false;
-  //      this.ads = ad['map']((item:any)=>{
-  //        let adsExtented  = item;
-  //        adsExtented.userName = user.find(user=> user.id === item.userId)?.name
-  //      /*   adsExtented.categoryName = category.find(category=> category.subCategoryId === item.categoryId )?.categoryId;*/
-  //        return adsExtented;   
-  //      })
-  //    }); 
-  //   }
-    
-
   onChange(index: number) {
+    // console.log(search);
+  const adName = (<HTMLInputElement>document.getElementById('adNameSearch')).value;
+  const categoryId = this.formSearch.getRawValue();
+  var possibleDelivery = true;
+  var price = 12;
     this.pageNumber = index;
     this.isLoading = true;
     const users$  = this._userService.getUserList();
       const category$ = this._categoryService.getListCategory();
      // const ad$ = this._adApiService.getList();
-     const ad$ = this._adApiService.getAdPage(index , this.pageSize );
+        const ad$ = this._adApiService.getAdFilter( index, this.pageSize, adName,possibleDelivery, this.category);
       combineLatest([/* category$, */ users$, ad$]).subscribe(response=>{
        /*  const category = response[0]; */
         const user = response[0];
@@ -126,7 +111,13 @@ export class HomePageComponent implements OnInit {
   
 }
 
-
+// onSubmit(adName: string, categoryId: string, possibleDelivery: boolean){
+//   adName = (<HTMLInputElement>document.getElementById('adNameSearch')).value;
+//   categoryId = this.category;
+//   possibleDelivery = true;
+//   var ads =  this._adApiService.getAds(adName, categoryId, possibleDelivery );
+//   return ads;
+// }
   
  
   /*   this._userService.getUserList().subscribe(user =>{

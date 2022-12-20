@@ -1,6 +1,7 @@
 import { Guid } from 'guid-typescript';
-export interface AdDto{
-    id: Guid;
+export class AdDto{
+   // export interface AdDto{
+    id: string;
     adName: string;
     categoryId: Guid;
     categoryName : string;
@@ -15,7 +16,7 @@ export interface AdDto{
 export interface CreateAd{
 adName: string
 description: string
-region: string
+region?: any
 categoryId: Guid
 //linkPhoto: ByteLengthQueuingStrategy
 price: number

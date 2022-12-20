@@ -6,6 +6,7 @@ import { AdApiService } from './services/ad-api.service';
 
 @Component({
   selector: 'app-root',
+  template: `<re-captcha (resolved)="resolved($event)" siteKey="YOUR_SITE_KEY"></re-captcha>`,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

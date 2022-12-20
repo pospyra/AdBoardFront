@@ -35,6 +35,8 @@ import { CreateAdComponent } from './components/create-ad/create-ad.component';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { RouterModule } from '@angular/router';
 import { FilterComponent } from './components/filter/filter.component';
+import { RecaptchaModule, RecaptchaFormsModule  } from "ng-recaptcha";
+//import { BrowserModule } from "@angular/platform-browser";
 registerLocaleData(ru)
 
 @NgModule({
@@ -51,6 +53,8 @@ registerLocaleData(ru)
     FilterComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    RecaptchaModule,
     RouterModule,
     BrowserModule,
     AppRoutingModule,

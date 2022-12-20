@@ -18,4 +18,12 @@ export class UserApiService {
   getUserList() : Observable<UserDto[]>{
     return this._http.get<UserDto[]>(`${environment.host}/User`);
   }
+
+  // public getById(id: string): Observable<User> {
+  //   return this._http.get<User>(`${environment.host}/User/getById?Id=${id}`);
+  // }
+
+  public getCurrentUser(){
+
+  }
 }

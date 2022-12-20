@@ -12,7 +12,7 @@ export class Ad{
     userId: Guid;
 
     constructor(dto : AdDto ){
-    this.id = dto.id;
+    //this.id = dto.id;
     this. adName=  dto.adName;
     this.categoryId = dto.categoryId;
     this.subCategoryId = dto.subCategoryId;
@@ -21,4 +21,14 @@ export class Ad{
     this.possibleOfDelivery= dto.possibleOfDelivery;
     this.userId = dto.userId;
     }
+}
+
+export class AdFilter{
+    currentPage?: number
+    size?: number
+    id?: string
+    adName?: string
+    categoryId?: string
+    possibleOfDelivery?: boolean
+    price?: number
 }

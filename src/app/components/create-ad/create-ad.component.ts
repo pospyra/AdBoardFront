@@ -17,7 +17,7 @@ export class CreateAdComponent implements OnInit {
   readonly form = this.fb.group({ 
   adName :['', [Validators.required]],
   description:  ['', /* [Validators.required , */ Validators.maxLength(200) ],
-  region: ['', [Validators.required]],
+  region: [],
   categoryId: [null, Validators.required ],
   //linkPhoto: [[]],
   price: [

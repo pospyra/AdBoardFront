@@ -1,7 +1,7 @@
 <h1>Регистрация</h1>
 <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-[500px]">
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="name">ФИО</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="name">ФИО</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="name"  id="name" formControlName = "name">
       </nz-form-control>
@@ -9,14 +9,14 @@
 
     
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="login">Логин</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="login">Логин</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="login"  id="login" formControlName = "login">
       </nz-form-control>
     </nz-form-item >
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="email">Email</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="email">Email</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="email"  id="email" formControlName = "email">
 
@@ -24,7 +24,7 @@
     </nz-form-item >
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="password">Пароль</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="password">Пароль</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="password"  id="password" formControlName = "password" type="password">
       </nz-form-control>
@@ -32,14 +32,14 @@
 
     
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="number">Номер телефона</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="number">Номер телефона</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="number"  id="number" formControlName = "number" type="tel">
       </nz-form-control>
     </nz-form-item >
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="6" nzFor="region">Регион</nz-form-label>
+      <nz-form-label [nzSpan]="10" nzFor="region">Регион</nz-form-label>
       <nz-form-control [nzSpan]="14" [nzErrorTip]="errorTip">
         <input nz-input name="region"  id="region" formControlName = "region">
       </nz-form-control>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { AdApiService } from 'src/app/services/ad-api.service';
 import { CategoryApiService } from 'src/app/services/category-api.service';
 
@@ -16,10 +18,10 @@ export class CreateAdComponent implements OnInit {
   
   readonly form = this.fb.group({ 
   adName :['', [Validators.required]],
-  description:  ['', /* [Validators.required , */ Validators.maxLength(200) ],
+  description:  ['', [ Validators.maxLength(200) ]],
   region: [],
   categoryId: [null, Validators.required ],
-  //linkPhoto: [[]],
+  //photos: [[]],
   price: [
     0,
     [
@@ -35,11 +37,28 @@ export class CreateAdComponent implements OnInit {
        private nzMessageService : NzMessageService, 
        private nzNotificationService : NzNotificationService, 
        private _adApi: AdApiService ,
-       private _categoryApiService : CategoryApiService) { }
+       private _categoryApiService : CategoryApiService,
+       private msg: NzMessageService,
+       private router: Router,) { }
   
     ngOnInit(): void {
     }
-  
+
+  handleChange(info: NzUploadChangeParam): void {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      this.msg.success(`${info.file.name} file uploaded successfully`);
+      (this.form.get('photos') as any).patchValue([
+        ...this.form.get('photos')!.value as any,
+        info.file.response
+      ])
+    } else if (info.file.status === 'error') {
+      this.msg.error(`${info.file.name} file upload failed.`);
+    }
+  }
+
     onSubmit(){
       if(this.form.invalid){
         this.nzNotificationService.error('Ошибка' , 'Форма заполнена не ');
@@ -53,7 +72,10 @@ export class CreateAdComponent implements OnInit {
       }
       
       this._adApi.createAd(this.form.getRawValue()).subscribe(res=>{
-        console.log(res);
-      })
-
-}}
+        this.router.navigateByUrl('' );
+        this.nzNotificationService.success(
+          'Успешно!',
+          'Объявление создано!'
+        );
+    });
+  }}

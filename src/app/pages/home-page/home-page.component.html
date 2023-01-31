@@ -1,3 +1,4 @@
+
 <div class = "search">
   <div class =" categorySearch">
     <form nz-form [formGroup]="formSearch" (ngSubmit)="onSubmit()">
@@ -26,13 +27,24 @@
 <div class="container" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }" >
     <nz-card *ngFor = "let item of ads"  >
       <div class="card">
-      <button nz-button nzType="primary"><span nz-icon [nzType]="'star'" [nzTheme]="'fill'"></span></button>
+      <button name="buttonSelected" nz-button nzType="default"><span nz-icon [nzType]="'star'" [nzTheme]="'fill'" style="color:cadetblue;"></span></button>
       <h1>{{item.adName}}</h1> 
+      <img
+      *ngIf="item.photo"
+      src="data:image/jpeg;base64,{{ item.photo }}"
+      alt="фото"
+      class="mb-4"
+    />
       <p>Описание: {{item.description}}</p> 
-      <p>Категория {{item.categoryName }}</p>
-      <p>Автор {{item.userName}}</p>
+      <!-- <p>Категория {{item.categoryName}}</p>
+      <p>Автор {{item.userName}}</p> -->
       <h2>Цена {{item.price |currency}}</h2> 
-      <button nz-button nzType="primary" (click)="deleteAd(item.id)" style="float: right;">Удалить</button>
+      <button nz-button nzType="dashed" (click)="deleteAd(item.id)" style="float: right;  color:brown"><span nz-icon nzType="delete" nzTheme="outline"></span></button>
+      <button nz-button nzType="dashed"  style="float: right; margin-right: 10px; color: rgb(209, 157, 120);" [routerLink]="['/EditAd', item.id]"
+
+      >
+        <span nz-icon nzType="edit" nzTheme="outline"> </span>
+      </button>
     </div>
     </nz-card> 
   </div>

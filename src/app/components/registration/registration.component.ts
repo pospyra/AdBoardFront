@@ -1,6 +1,7 @@
 import { computeMsgId } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthApiService } from 'src/app/services/auth-api.service';
@@ -28,7 +29,8 @@ readonly form = this.fb.group({
      private fb : FormBuilder, 
      private nzMessageService : NzMessageService, 
      private nzNotificationService : NzNotificationService, 
-     private _auth: AuthApiService ) { }
+     private _auth: AuthApiService,
+     private router: Router ) { }
 
   ngOnInit(): void {
   }
@@ -47,6 +49,8 @@ readonly form = this.fb.group({
 
     this._auth.registration(this.form.getRawValue()).subscribe(res=>{
       console.log(res);
+      this.router.navigateByUrl('/login');
+
     })
   }
 }

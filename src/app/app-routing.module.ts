@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateAdComponent } from './components/create-ad/create-ad.component';
+import { EditAdComponent } from './components/edit-ad/edit-ad.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyAdsComponent } from './components/my-ads/my-ads.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
   {path: 'createAd', component: CreateAdComponent},
   {path: 'myAds', component: MyAdsComponent},
+  {path: 'EditAd/:id', component: EditAdComponent},
   
   
 ];

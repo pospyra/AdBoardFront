@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-my-ads',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAdsComponent implements OnInit {
 
-  constructor() { }
+  readonly formSearch = this.fb.group({ 
+    categoryId: [ ]
+  })
+
+  constructor(private fb : FormBuilder, ) { }
 
   ngOnInit(): void {
   }

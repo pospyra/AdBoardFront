@@ -11,7 +11,7 @@ private _token : string = null;
 
 
 
-  /* getToken() : string{
+   getToken() : string{
     if(this._token){
       return this._token
     }
@@ -29,6 +29,6 @@ private _token : string = null;
   
     logout(){
     localStorage.setItem(AUTh_TOKEN, JSON.stringify(null))
-    } */
+    } 
   }
 

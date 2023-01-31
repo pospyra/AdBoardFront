@@ -7,6 +7,7 @@ export class AdDto{
     categoryName : string;
     subCategoryId: Guid;
     description: string;
+    photo: string;
     price: number;
     possibleOfDelivery: boolean;
     userId: Guid;
@@ -17,8 +18,8 @@ export interface CreateAd{
 adName: string
 description: string
 region?: any
-categoryId: Guid
-//linkPhoto: ByteLengthQueuingStrategy
+categoryId: string
+//Photo: ByteLengthQueuingStrategy
 price: number
 possibleDelivery: boolean
 //userId: Guid

@@ -36,6 +36,9 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { RouterModule } from '@angular/router';
 import { FilterComponent } from './components/filter/filter.component';
 import { RecaptchaModule, RecaptchaFormsModule  } from "ng-recaptcha";
+import { EditAdComponent } from './components/edit-ad/edit-ad.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+
 //import { BrowserModule } from "@angular/platform-browser";
 registerLocaleData(ru)
 
@@ -51,8 +54,10 @@ registerLocaleData(ru)
     RegistrationComponent,
     CreateAdComponent,
     FilterComponent,
+    EditAdComponent,
   ],
   imports: [
+    NzUploadModule,
     ReactiveFormsModule,
     RecaptchaModule,
     RouterModule,

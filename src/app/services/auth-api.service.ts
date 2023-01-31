@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { catchError, map, Observable, of, retry,  tap,  throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, retry,  tap,  throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {  UserLogin, UserRegister } from '../models/user';
 import { UserDto } from '../models/user-dto.interface';
@@ -11,6 +11,9 @@ import { UserDto } from '../models/user-dto.interface';
   providedIn: 'root'
 })
 export class AuthApiService {
+  private userSubject: BehaviorSubject<UserDto>;
+  public userCur: Observable<UserDto>;
+  
   constructor(private _http : HttpClient, private router : Router) {
   }
 
@@ -43,11 +46,10 @@ export class AuthApiService {
    this.token = res.token;
    this.router.navigateByUrl('/');
    }));
-   
   }
 
-  logout() : void{
-    localStorage.removeItem('token');
-    this.router.navigateByUrl('/');
+  public logout(): void {
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
   }
 }

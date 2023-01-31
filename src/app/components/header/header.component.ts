@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { AdDto } from 'src/app/models/ad-dto.interface';
 import { Category, CategoryDto } from 'src/app/models/category-dto.interface';
 import { UserDto } from 'src/app/models/user-dto.interface';
 import { HomePageComponent } from 'src/app/pages/home-page/home-page.component';
 import { AdApiService } from 'src/app/services/ad-api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { CategoryApiService } from 'src/app/services/category-api.service';
 import { UserApiService } from 'src/app/services/user-api.service';
 
@@ -24,12 +25,20 @@ export class HeaderComponent implements OnInit {
   public pageNumber =1;
   public isLoading: boolean = true;
   search: string;
-
-
-  constructor(private _categoryApiService : CategoryApiService, private _adApiService : AdApiService, private _userService : UserApiService, private _filter : HomePageComponent) { }
+  constructor(private _categoryApiService : CategoryApiService,
+     private _adApiService : AdApiService,
+      private _userService : UserApiService, 
+      private _filter : HomePageComponent,
+      private auth: AuthService) { }
 
   ngOnInit(): void {
   }
+
+  logout(){
+    this.auth.logout();
+  };
+  
+
   alert(){
     console.log('click');
     return this._categoryApiService.getListCategory()

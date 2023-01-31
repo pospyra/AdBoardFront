@@ -4,12 +4,10 @@
 }
 
 .wrap{
-
-
-    display: flex;
+   /* display: flex;
      flex-direction: column;
      gap: 12px;
-     border: red;
+     border: red;*/
  
      app-header{
          position: sticky;
@@ -18,17 +16,25 @@
          border-radius: 0 10px;
          background-color: 	#AFEEEE;
      }
+
  
-     main{
+    /* main{
          display: flex;
          flex-direction: column;
          gap: 24px;
          min-height: 120vh;
         // padding: 24px;      
          margin: 0;  
-     }
+     }*/
 
  } 
+
+ .card{
+    display: flex;
+    width: 500;
+    height: 500;
+    margin: 4px;
+ }
  .container{
     padding: 10px;  
     /* Center the container in middle on horizontal axis */
@@ -41,6 +47,8 @@
     top: 0;
     padding: 24px;  
  }
+
+
 
  
  
